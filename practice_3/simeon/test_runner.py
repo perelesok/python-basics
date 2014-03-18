@@ -5,10 +5,10 @@ def add_test(fn):
     tests.update({fn:"pending"}) 
 
 def pending_tests():
-    print("{}".format(tests.values()))
-    for el in tests:
-        if tests.values is "pending":
-            print("%r" % tests.keys())
+    for k, v in tests.items():
+        if v == "pending":
+            pen_tests.append(k)
+    return pen_tests
               
 #     return tests.keys() for tests.values() in ["pending"]
 
@@ -27,3 +27,5 @@ tests.update({"fn4" : "notpending"})
 print("%r" % tests)
 
 pending_tests()
+
+print("%r" % pen_tests)
