@@ -5,7 +5,12 @@ def unique(lst):
             lst2.append(el)
     return lst2
    
-# print("%r" % unique([1, 2, 1, 3, 4, 3, 3, 3]))
+print("%r" % unique([1, 2, 1, 3, 4, 3, 3, 3]))   
+print("%r" % unique([]))
+print("%r" % unique([1]))
+print("%r" % unique([1,2,2,2,1]))
+print("%r" % unique([1,1,1,1,1,1,1,]))
+
 
 def uniquedict(lst):
     d = dict(zip(lst,lst))

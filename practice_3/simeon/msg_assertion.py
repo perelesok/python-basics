@@ -1,6 +1,5 @@
 # 
 # def assert_equal(a, b, msg="{} is not equal {}"):
-# #     assert a == b, "({}) is not equal ({})".format(a,b)
 #     assert a == b, msg.format(a, b)
 #     print("({}) is equal ({})".format(a, b))
 # 
