@@ -1,7 +1,7 @@
 import traceback
 
-class TestRunnerBase(object):
-    def __init__(self):
+class TestRunnerReporter(object):
+    def __init__(self, reporter):
         self.tests = {}
         self.pen_tests = []
         self.ran_t = []
@@ -25,15 +25,15 @@ class TestRunnerBase(object):
         self.pending_tests()
         for test in self.pen_tests:
             try:
-                self.report_test_started(test)
+                reporter.report_test_started(test)
                 test()
             except:
-                self.report_test_failed(test, traceback.format_exc())
+                reporter.report_test_failed(test, traceback.format_exc())
                 failed = failed + 1
                 ran = ran + 1
                 self.tests[test] = "failed"
             else:
-                self.report_test_passed(test)
+                reporter.report_test_passed(test)
                 passed = passed + 1
                 ran = ran + 1
                 self.tests[test] = "passed"
@@ -70,8 +70,7 @@ class TestRunnerBase(object):
         print("ran:({}) passed:({}) failed:({})".format(ran, passed, failed))
 
 
-class TestRunnerVerboseReporting(TestRunnerBase):
-
+class VerboseReporter(object):
     def report_test_started(self, test):
         print "started: %r" % test
 
@@ -79,20 +78,18 @@ class TestRunnerVerboseReporting(TestRunnerBase):
         print "passed: %r" % test
 
     def report_test_failed(self, test, stack):
-        print("failed: {} traceback: {}".format(test, stack))
+        print("failed: {} traceback: {}".format(test, stack))    
 
 
-class TestRunnerFailReporting(TestRunnerBase):
-
+class FailReporter(object):
     def report_test_started(self, test):
         pass
-
+ 
     def report_test_passed(self, test):
         print "."
-
+ 
     def report_test_failed(self, test, stack):
-        print("test failed: traceback: {}".format(stack))
-
+        print("test failed: traceback: {}".format(stack))  
 
 # Functions
 
@@ -116,23 +113,23 @@ def assert_equal(a, b, msg="{} is not equal {}"):
     assert a == b, msg.format(a, b)
     print("({}) is equal ({})".format(a, b))
 
-print "\nTestRunnerVerboseReporting"
-a = TestRunnerVerboseReporting()
 
-a.add_test(fn)
-a.add_test(fn2)
-a.add_test(fn3)
-a.add_test(test_assert_equal)
+reporter = VerboseReporter()
+runner = TestRunnerReporter(reporter)
 
-a.run()
+runner.add_test(fn)
+runner.add_test(fn2)
+runner.add_test(fn3)
+runner.add_test(test_assert_equal)
 
+runner.run()
 
-print "\nTestRunnerFailReporting"
-a = TestRunnerFailReporting()
+reporter = FailReporter()
+runner = TestRunnerReporter(reporter)
 
-a.add_test(fn)
-a.add_test(fn2)
-a.add_test(fn3)
-a.add_test(test_assert_equal)
+runner.add_test(fn)
+runner.add_test(fn2)
+runner.add_test(fn3)
+runner.add_test(test_assert_equal)
 
-a.run()
+runner.run()
