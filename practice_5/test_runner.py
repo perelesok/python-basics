@@ -61,33 +61,33 @@ class TestRunner(object):
             self.tests[k] = ""
         
 # Test-Suite
-# 
-# test_runner = TestRunner()
-# 
-# test_runner.add_test("fn1()")
-# test_runner.add_test("funct2(1,1)")
-# test_runner.add_test("functinT(222)")
-# test_runner.add_test("testFun")
-# test_runner.tests.update({"fn4" : "undefined status"}) 
-# print("%r" % test_runner.tests)
-#  
-# test_runner.pending_tests()
-# print("%r" % test_runner.pen_tests)
-#  
-# # run()
-# tupl = test_runner.run()
-# print tupl
-# print("%r" % test_runner.tests)
-#  
-# test_runner.ran_tests()
-# test_runner.passed_tests()
-# test_runner.failed_tests()
-# print("ran: %r" % test_runner.ran_t)
-# print("passed: %r" % test_runner.pass_t)
-# print("failed: %r" % test_runner.fail_t)
-#  
-# test_runner.clear_state()
-# print("%r" % test_runner.tests)
-# print("ran: %r" % test_runner.ran_t)
-# print("passed: %r" % test_runner.pass_t)
-# print("failed: %r" % test_runner.fail_t)
+ 
+test_runner = TestRunner()
+ 
+test_runner.add_test("fn1()")
+test_runner.add_test("funct2(1,1)")
+test_runner.add_test("functinT(222)")
+test_runner.add_test("testFun")
+test_runner.tests.update({"fn4" : "undefined status"}) 
+print("%r" % test_runner.tests)
+  
+test_runner.pending_tests()
+print("%r" % test_runner.pen_tests)
+  
+# run()
+tupl = test_runner.run()
+print tupl
+print("%r" % test_runner.tests)
+  
+test_runner.ran_tests()
+test_runner.passed_tests()
+test_runner.failed_tests()
+print("ran: %r" % test_runner.ran_t)
+print("passed: %r" % test_runner.pass_t)
+print("failed: %r" % test_runner.fail_t)
+  
+test_runner.clear_state()
+print("%r" % test_runner.tests)
+print("ran: %r" % test_runner.ran_t)
+print("passed: %r" % test_runner.pass_t)
+print("failed: %r" % test_runner.fail_t)
